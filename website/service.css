@@ -1,0 +1,255 @@
+/* Reset and basic styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+/* Updated Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #800020; /* Burgundy */
+    color: #FFFFF0; /* Ivory */
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #FFFFF0; /* Ivory */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #FFD7D7; /* Light Ivory */
+}
+main {
+    flex-grow: 1;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.services h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 36px;
+}
+/* Services Section Styling */
+.services {
+    text-align: center;
+    /* padding: 50px 20px; */
+}
+
+/* Fade-in Animation for the H1 Heading */
+.services h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #080808; /* Burgundy */
+    animation: fadeIn 2s ease-in-out; /* Applying the fadeIn animation */
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+/* Keyframes for the fade-in effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Wrapper for service container and buttons */
+.service-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Horizontal scrolling for service container */
+.service-container {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    gap: 20px;
+    width: 80%;
+    padding: 20px 0;
+}
+
+.service {
+    flex: 0 0 auto;
+    width: 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-height: 200px;
+}
+
+.service-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.service-info h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.service-info p {
+    font-size: 16px;
+    color: #666;
+}
+
+.service:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Slide buttons */
+.slide-left, .slide-right {
+    background-color: #808080; /* Grey */
+    color: #800020; /* Orange */
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    z-index: 10;
+}
+
+.slide-left {
+    left: 0;
+}
+
+.slide-right {
+    right: 0;
+}
+
+.slide-left:hover, .slide-right:hover {
+    background-color: #800020; /* Orange */
+    color: #808080; /* Grey */
+}
+
+/* Footer Styling */
+footer {
+    background-color: #800020; /* Burgundy */
+    color: #FFFFF0; /* Ivory */
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Hamburger menu styles */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #FFFFF0; /* Ivory */
+    margin: 3px 0;
+    transition: all 0.3s ease;
+}
+
+/* Show hamburger menu icon on mobile */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px; /* Adjust if needed */
+        right: 0;
+        background-color: #800020; /* Burgundy */
+        width: 100%;
+        text-align: center;
+        flex-direction: column;
+        padding: 10px 0;
+        transition: all 0.3s ease;
+        z-index: 1000; /* Ensure menu is above other content */
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    /* Close icon */
+    .menu-toggle.active::after {
+        content: "✖";
+        display: block;
+        font-size: 24px;
+        color: #FFFFF0; /* Ivory */
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+    }
+}
