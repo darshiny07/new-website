@@ -1,4 +1,3 @@
-
 /* Reset some default styling */
 * {
     margin: 0;
@@ -8,8 +7,10 @@
 
 body, html {
     height: 100%;
+    width: 100%; /* Ensure body and html take full width */
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Updated Header Styling */
@@ -20,6 +21,8 @@ header {
     padding: 20px;
     background-color: #800020; /* Burgundy */
     color: #FFFFF0; /* Ivory */
+    width: 100%; /* Ensure header takes full width */
+    flex-wrap: wrap; /* Allow header elements to wrap */
 }
 
 .logo-container {
@@ -27,19 +30,17 @@ header {
     align-items: center;
 }
 
-.logo {
-    height: 50px;
-    margin-right: 10px;
-}
-
 .title {
     font-size: 24px;
     font-weight: 700;
+    flex-shrink: 0; /* Prevent the title from shrinking too much */
 }
 
 nav ul {
     list-style: none;
     display: flex;
+    padding: 0;
+    flex-wrap: wrap; /* Ensure nav items wrap if necessary */
 }
 
 nav ul li {
@@ -52,38 +53,63 @@ nav ul li a {
     font-size: 18px;
     font-weight: 400;
     transition: color 0.3s ease;
+    white-space: nowrap; /* Prevent nav links from breaking into multiple lines */
 }
 
 nav ul li a:hover {
     color: #FFD7D7; /* Light Ivory */
 }
 
+/* Footer Styling */
+footer {
+    background-color: #800020; /* Burgundy */
+    color: #FFFFF0; /* Ivory */
+    text-align: center;
+    padding: 10px 0;
+    width: 100%; /* Ensure footer takes full width */
+    position: relative;
+    bottom: 0;
+}
+
+/* Ensure main content covers remaining space */
 main {
-    height: calc(100vh - 80px); /* Ensure main content covers remaining space */
+    position: relative;
+    height: calc(100vh - 80px); 
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('images/bg.jpeg');
-       background-size: cover;
+    background-image: url('images/bgg.jpg'); /* Add your image URL here */
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    color: white;
     text-align: center;
     padding: 20px;
-    
+    overflow-wrap: break-word; /* Allow text to break if too long */
+}
+main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+    z-index: 1; /* Ensure the overlay is on top of the background but below the content */
 }
 
-.hero h2 , h1 {
+.hero {
+    position: relative;
+    z-index: 2; /* Ensure content is above the overlay */
+}
+.hero h2, .hero h1 {
     font-size: 48px;
     margin-bottom: 20px;
     animation: fadeIn 2s ease-in-out;
+    max-width: 90%; /* Ensure large text doesn't overflow */
+    color: aliceblue;
 }
 
-.hero p {
-    font-size: 24px;
-    animation: fadeIn 2s ease-in-out 1s;
-}
-
+/* Fade-in Animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -95,20 +121,7 @@ main {
     }
 }
 
-footer {
-    background-color: #800020; /* Burgundy */
-    color: #FFFFF0; /* Ivory */
-    text-align: center;
-    padding: 10px 0;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-
-/* Existing CSS */
-
-/* Hamburger menu styles */
+/* Hamburger Menu Styling */
 .menu-toggle {
     display: none;
     cursor: pointer;
@@ -126,32 +139,43 @@ footer {
     transition: all 0.3s ease;
 }
 
-/* Show hamburger menu icon on mobile */
+/* Mobile Styles */
 @media (max-width: 768px) {
-    .nav-links {
+    header {
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 18px; /* Reduce title size on smaller screens */
+    }
+
+    nav ul {
         display: none;
-        position: absolute;
-        top: 60px; /* Adjust if needed */
-        right: 0;
-        background-color: #800020; /* Burgundy */
-        width: 100%;
-        text-align: center;
         flex-direction: column;
-        padding: 10px 0;
-        transition: all 0.3s ease;
-        z-index: 1000; /* Ensure menu is above other content */
+        text-align: center;
     }
 
     .nav-links.active {
+        display: flex;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        background-color: #800020; /* Burgundy */
+        padding: 10px 0;
+        z-index: 1000;
+    }
+
+    nav ul li a {
+        font-size: 16px; /* Reduce nav link font size for mobile */
+    }
+
+    .menu-toggle {
         display: flex;
     }
 
     .nav-links li {
         margin: 10px 0;
-    }
-
-    .menu-toggle {
-        display: flex;
     }
 
     .menu-toggle.active .bar:nth-child(1) {
@@ -166,7 +190,6 @@ footer {
         transform: rotate(-45deg) translate(5px, -6px);
     }
 
-    /* Close icon */
     .menu-toggle.active::after {
         content: "✖";
         display: block;
@@ -176,11 +199,30 @@ footer {
         top: 10px;
         right: 20px;
         cursor: pointer;
-        font-family: Arial, sans-serif;
     }
 }
 
+/* Very Small Screen Styles */
+@media (max-width: 400px) {
+    .hero h2, .hero h1 {
+        font-size: 28px; /* Reduce font size for very small screens */
+        margin-bottom: 10px;
+    }
 
+    .title {
+        font-size: 16px; /* Further reduce title size */
+    }
 
+    nav ul li a {
+        font-size: 14px; /* Further reduce nav link font size */
+    }
 
+    main {
+        padding: 10px; /* Adjust padding to fit content */
+    }
 
+    .hero h1, .hero h2 {
+        max-width: 100%; /* Ensure large text fits on small screens */
+        word-wrap: break-word; /* Ensure text wraps within screen width */
+    }
+}

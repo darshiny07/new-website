@@ -1,0 +1,25 @@
+main {
+    height: calc(100vh - 80px); /* Ensure main content covers remaining space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    background-image: url('images/bg.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.561); /* Black overlay with 50% transparency */
+    z-index: -1; /* Ensure the overlay is behind the content */
+}
